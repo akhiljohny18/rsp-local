@@ -1,6 +1,7 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 import { Header as HeaderType } from '../../../../payload/payload-types'
@@ -11,7 +12,16 @@ import classes from './index.module.scss'
 
 export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
   const navItems = header?.navItems || []
-  const { user } = useAuth()
+  const { user} = useAuth()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (user === null) {
+      router.push('/login')
+    }
+  }, [user, router])
+
+
 
   return (
     <nav
@@ -28,15 +38,12 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
         return <CMSLink key={i} {...link} appearance="none" />
       })}
       {user && <Link href="/account">Account</Link>}
-      {/*
-        // Uncomment this code if you want to add a login link to the header
-        {!user && (
-          <React.Fragment>
-            <Link href="/login">Login</Link>
-            <Link href="/create-account">Create Account</Link>
-          </React.Fragment>
-        )}
-      */}
+      {!user && (
+        <React.Fragment>
+          <Link href="/login">Login</Link>
+          <Link href="/create-account">Create Account</Link>
+        </React.Fragment>
+      )}
     </nav>
   )
 }

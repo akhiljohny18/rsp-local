@@ -34,7 +34,6 @@ dotenv.config({
 
 export default buildConfig({
   admin: {
-
     user: Users.slug,
     bundler: webpackBundler(),
     components: {
@@ -44,7 +43,6 @@ export default buildConfig({
       // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeDashboard` statement on line 15.
       beforeDashboard: [BeforeDashboard],
-
     },
     webpack: config => ({
       ...config,

@@ -18,10 +18,10 @@ export default function Index() {
           throw new Error(`API request failed with status ${response.status}`);
         }
         const data = await response.json();
-        console.log(data);
+       
         setPosts(data.docs);
       } catch (error) {
-        console.error('Error fetching posts:', error);
+        // console.error('Error fetching posts:', error);
       }
     };
 

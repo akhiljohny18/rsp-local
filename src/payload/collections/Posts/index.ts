@@ -1,3 +1,4 @@
+import path from 'path';
 import type { CollectionConfig } from 'payload/types'
 
 import { admins } from '../../access/admins'
@@ -13,7 +14,6 @@ import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { populateAuthors } from './hooks/populateAuthors'
 import { revalidatePost } from './hooks/revalidatePost'
 
-import path from 'path';
 
 interface BuildConfig {
     admin: {
